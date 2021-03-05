@@ -4,9 +4,9 @@
 
 ## Characters #################################################################################################################
 define a = Character("Anne", image="anne", what_prefix='"', what_suffix='"')
-define b = Character("Boss", what_prefix='"', what_suffix='"', italics=True)
+define b = Character("Boss", what_prefix='"', what_suffix='"', what_italic=True)
 define c = Character("Charles", image="charles", what_prefix='"', what_suffix='"')
-define g = Character("Gabe", image="gabe", what_prefix='"', what_suffix='"')
+define g = Character("[g_name]", image="gabe", what_prefix='"', what_suffix='"')
 define ls = Character("Lucas", image="lucas", what_prefix='"', what_suffix='"')
 define ly = Character("Lucy", image="lucy", what_prefix='"', what_suffix='"')
 define m = Character("[m_name]", image="mike", what_prefix='"', what_suffix='"')
@@ -27,6 +27,7 @@ image mike = Placeholder("boy")
 image bg black = "#000000"
 image bg desk = "#aaaaaa"
 image bg door = "#4a7f9c"
+image bg hallway = "#3700ff"
 image bg lobby = "#94bfd8"
 image bg room = "#3cabe0"
 image bg white = "#ffffff"
@@ -67,6 +68,7 @@ image logo_shine:
 
 
 ## Audio ######################################################################################################################
+
 # Audio Channels
 init python:
     renpy.music.register_channel("sound2", mixer="sfx", loop=False)
@@ -77,14 +79,19 @@ init python:
 define audio.a_new_day = "<loop 3.73>audio/music/a_new_day.ogg"
 define audio.autumn_leaves = "<loop 5.2>audio/music/Autumn-Leaves_Looping.mp3"
 define audio.blue_ridge = "audio/music/Blue-Ridge_Looping.mp3"
+define audio.delivering_the_goods = "audio/music/Delivering-the-Goods_Looping.mp3"
 define audio.evening_stars_rising = "audio/music/Eveing-Stars-Rising.mp3"
 define audio.far_away_puzzle_places = "audio/music/Far-Away-Puzzle-Places.mp3"
+define audio.high_altitude_bliss = "audio/music/High-Altitude-Bliss.mp3"
+define audio.norther_passage = "audio/music/Northern-Passage.mp3"
 
 # Sound Effects
 define audio.crowd_running = "audio/se/crowd_running.ogg"
 define audio.crowd_talking = "<to 28 loop 1>audio/se/crowd_talking.ogg"
 define audio.door = "audio/se/door.ogg"
+define audio.elevator = "audio/se/elevator.ogg"
 define audio.intercom = "audio/se/intercom.ogg"
+define audio.knock = "audio/se/knock.ogg"
 define audio.light_switch = "audio/se/light_switch.ogg"
 define audio.running = "audio/se/running.ogg"
 
@@ -114,13 +121,18 @@ transform left:
 
 
 ## Transitions ################################################################################################################
-define longdissolve = Dissolve(3.0)
+define elevator_close = ImageDissolve("elevator.png", 1.0)
+define elevator_open = ImageDissolve("elevator.png", 1.0, reverse=True)
+define fadepause = Fade(1.0, 1.0, 1.0)
 define iris = ImageDissolve("iris.png", 0.75)
+define longdissolve = Dissolve(3.0)
 
 
 ## Variables ##################################################################################################################
 
 # Standard
+default first_story = True
+default g_name = "Gabe"
 default m_name = "New Guy"
 default stories = {"story1": False, "story2": False, "story3": False, "story4": False, "story5": False}
 
@@ -296,9 +308,15 @@ label story_select:
     w "Next!"
     window hide dissolve
     menu:
-        "Charles Robinson":
+        "Charles Robinson" if not stories["story1"]:
             jump story1
 
+    return
+
+label workerhelp:
+    m "Follow the signs around the lobby; they'll lead you in the direction you need to go."
+    m "Or you may receive help from the workers spread along the floor."
+    $first_story = False
     return
 
 # Save for a scene between stories

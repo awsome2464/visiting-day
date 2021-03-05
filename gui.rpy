@@ -26,11 +26,11 @@ init python:
 define gui.accent_color = u'#0099ff'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = u'#aaaaaa'
+define gui.idle_color = u'#000000'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
-define gui.idle_small_color = u'#888888'
+define gui.idle_small_color = u'#000000'
 
 ## The color that is used for buttons and bars that are hovered.
 define gui.hover_color = u'#0099ff'
@@ -85,7 +85,7 @@ define gui.title_text_size = 50
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
+define gui.main_menu_background = "bg lobby"
 define gui.game_menu_background = "gui/game_menu.png"
 
 
