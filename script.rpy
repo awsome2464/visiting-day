@@ -6,10 +6,12 @@
 define a = Character("Anne", image="anne", what_prefix='"', what_suffix='"')
 define b = Character("Boss", what_prefix='"', what_suffix='"', what_italic=True)
 define c = Character("Charles", image="charles", what_prefix='"', what_suffix='"')
-define g = Character("[g_name]", image="gabe", what_prefix='"', what_suffix='"')
+define g = Character("Gabe", image="gabe", what_prefix='"', what_suffix='"')
 define ls = Character("Lucas", image="lucas", what_prefix='"', what_suffix='"')
 define ly = Character("Lucy", image="lucy", what_prefix='"', what_suffix='"')
 define m = Character("[m_name]", image="mike", what_prefix='"', what_suffix='"')
+define mc = Character("Michelle", image="michelle", what_prefix='"', what_suffix='"')
+define mo = Character("Moss", image="moss", what_prefix='"', what_suffix='"')
 define w = Character("Worker", what_prefix='"', what_suffix='"')
 
 
@@ -21,7 +23,9 @@ image charles = Placeholder("boy")
 image gabe = Placeholder("boy")
 image lucas = Placeholder("boy")
 image lucy = Placeholder("girl")
+image michelle = Placeholder("girl")
 image mike = Placeholder("boy")
+image moss = Placeholder("boy")
 
 # Backgrounds
 image bg black = "#000000"
@@ -83,7 +87,9 @@ define audio.delivering_the_goods = "audio/music/Delivering-the-Goods_Looping.mp
 define audio.evening_stars_rising = "audio/music/Eveing-Stars-Rising.mp3"
 define audio.far_away_puzzle_places = "audio/music/Far-Away-Puzzle-Places.mp3"
 define audio.high_altitude_bliss = "audio/music/High-Altitude-Bliss.mp3"
+define audio.loss = "audio/music/Loss.mp3"
 define audio.norther_passage = "audio/music/Northern-Passage.mp3"
+define audio.post_op = "audio/music/Post-Op_Looping.mp3"
 
 # Sound Effects
 define audio.crowd_running = "audio/se/crowd_running.ogg"
@@ -103,6 +109,10 @@ style intro:
     text_align 0.5
     size 100
     outlines [(1.0, "#ffffff", 0.0, 0.0)]
+
+style roomnumber:
+    color "#0006ff"
+    italic True
 
 
 ## Transforms #################################################################################################################
@@ -132,7 +142,6 @@ define longdissolve = Dissolve(3.0)
 
 # Standard
 default first_story = True
-default g_name = "Gabe"
 default m_name = "New Guy"
 default stories = {"story1": False, "story2": False, "story3": False, "story4": False, "story5": False}
 
@@ -224,7 +233,7 @@ label start:
     g "Trust me, I've been working at the desk for a little over a thousand years now, and I promise that it's as simple as it gets."
     g "They did tell you what the job entails, right?"
     m "Yes, of course."
-    m "When the human approaches, you ask them for the name, date of birth, and date of death of the person they wish to visit, as well as the reason for the visit."
+    m "When the human approaches, you ask them for the name, date of birth, and date of death of the person they wish to visit, as well as their relation to them."
     m "From there, you search for the file of the Visited, find their room number, and give it to the Visitors."
     g "Well, well. I'm glad management is still properly training the newbies.{w=0.5}\nI'd say you have nothing to worry about."
     m "You say that, but I still can't help but feel nervous about how I'll react to some of these humans."
@@ -310,13 +319,40 @@ label story_select:
     menu:
         "Charles Robinson" if not stories["story1"]:
             jump story1
+        "Michelle Sanders" if not stories["story2"]:
+            jump story2
+        "Gladys Swan" if not stories["story3"]:
+            pass
+        "Colin Green" if not stories["story4"]:
+            pass
+        "Samantha Crenshaw" if not stories["story5"]:
+            pass
 
+    return
+
+label storybegin:
+    stop music fadeout 5
+    scene bg black with longdissolve
+    pause 4
     return
 
 label workerhelp:
     m "Follow the signs around the lobby; they'll lead you in the direction you need to go."
     m "Or you may receive help from the workers spread along the floor."
     $first_story = False
+    return
+
+label elevator_ride:
+    window hide dissolve
+    pause 0.5
+    stop music fadeout 3
+    stop ambience1 fadeout 3
+    play sound elevator
+    scene bg black with elevator_close
+    pause 1
+    scene bg hallway with elevator_open
+    pause 0.5
+    window show dissolve
     return
 
 # Save for a scene between stories

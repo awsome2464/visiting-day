@@ -3,9 +3,7 @@
 ###############################
 
 label story1:
-    stop music fadeout 5
-    scene bg black with longdissolve
-    pause 4
+    call storybegin
     window show
     ly "C'mon, Lucas! Can't you hurry it up??"
     ls "I can.{w=0.5}\nDoesn't mean I want to."
@@ -40,7 +38,6 @@ label story1:
     ly "Finally!"
     "An hour and fifteen minutes.{w=0.5}\nNot bad, all things considered."
     $m_name = "Worker"
-    $g_name = "Other Worker"
     hide lucy with dissolve
     pause 0.5
     show mike at middle with dissolve
@@ -59,7 +56,7 @@ label story1:
     a "August 3rd, 2010."
     m "Oh, my.{w=0.5}\nYou've been waiting quite a while then, huh?"
     a "Haha.{w=0.35} Yes, about as long as one could."
-    m "And the reason for this visit?"
+    m "And your relation to the Visited?"
     hide anne
     show lucy at left
     with dissolve
@@ -83,27 +80,17 @@ label story1:
     a "I'm sorry about that."
     m "Oh, it's quite alright, Ma'am."
     m "This is a day full of emotions, after all."
-    m "Anyway, the room number you're looking for is {color=0006ff}{i}418211411{/i}{/color}."
+    m "Anyway, the room number you're looking for is {=roomnumber}418211411{/}."
     "He handed Mom a card with the number on it."
     if first_story:
         call workerhelp
     m "Enjoy your visit!"
     a "Thank you, Sir."
     a "Alright, kids. Let's go."
-    hide anne
-    hide mike
-    with dissolve
+    scene bg desk with dissolve
+    pause 0.1
     "We stepped out of the line and towards the elevators along the outer wall."
-    window hide dissolve
-    pause 0.5
-    stop music fadeout 3
-    stop ambience1 fadeout 3
-    play sound elevator
-    scene bg black with elevator_close
-    pause 1
-    scene bg hallway with elevator_open
-    pause 0.5
-    window show dissolve
+    call elevator_ride
     show anne at middle with dissolve
     pause 0.1
     a "Alright, the room should be somewhere around here..."
@@ -157,7 +144,7 @@ label story1:
     pause 0.1
     "Ah.{w=0.35}\nHe finally noticed me."
     c "Wow..."
-    c "Look at you.{w=0.5}\nYou're a man now."
+    c "Look at you.{w=0.5}\nYou're a grown man now."
     ls "..."
     c "..."
     c "Anyway, would you all like to come in?"
@@ -208,7 +195,7 @@ label story1:
     c "Ahaha...{w=0.5}\nI'm afraid I can't answer that."
     ly "Huh?"
     c "That was the one rule about the Visiting Day:{w=0.5} {i}No talking about the Other Side.{/i}"
-    ly "They say it's to keep it a surprise for the living."
+    c "They say it's to keep it a surprise for the living."
     ly "Oh, come on!{w=0.5} Can't you give a teensy-weensy hint?"
     c "Sorry, Lucy; I don't wanna push my luck and break the sole rule on my first Visiting Day."
     ly "Ugh."
@@ -259,4 +246,6 @@ label story1:
     c "So to hear you say that..."
     "He wiped his eye."
     c "Thank you, Anne."
-
+    "He then kissed her again."
+    "My urge to vomit was increasing."
+    c "You know, I must admit that I was surprised that you guys showed up."
