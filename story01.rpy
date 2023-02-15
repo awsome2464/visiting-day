@@ -19,13 +19,13 @@ label story1:
     pause 0.1
     show anne at left with dissolve
     pause 0.1
-    a "Come on, Lucas.{w=0.35} It's a big crowd in here, and I'd hate for you to get lost in it."
+    an "Come on, Lucas.{w=0.35} It's a big crowd in here, and I'd hate for you to get lost in it."
     ls "Fine, whatever you say, Mom."
     "It's not like I get much of a choice in anything I do, anyway."
     ly "So, how much longer until we'll be at the front of the line, Mom?"
-    a "I'm not sure, Lucy.{w=0.5}\nThe workers seem to be moving fast, but we could still be dealing with an hour or so of wait."
+    an "I'm not sure, Lucy.{w=0.5}\nThe workers seem to be moving fast, but we could still be dealing\nwith an hour or so of wait."
     ly "UGH!"
-    a "Hey, we've waited 10 years to see your father; we can wait another couple hours."
+    an "Hey, we've waited 10 years to see your father; we can wait another couple hours."
     ly "I guess..."
     "If it were up to me, we wouldn't even be here right now."
     "But hey, whatever Lucy and Mom want, I have to want, too."
@@ -37,26 +37,26 @@ label story1:
     show lucy at middle with dissolve
     ly "Finally!"
     "An hour and fifteen minutes.{w=0.5}\nNot bad, all things considered."
-    $m_name = "Worker"
+    $a_name = "Worker"
     hide lucy with dissolve
     pause 0.5
-    show mike at middle with dissolve
+    show ariel casual grin at middle with dissolve
     pause 0.1
-    m "Hi there!{w=0.35} Welcome to the Beyond Suites!"
-    m "What is the name of the person you're visiting today?"
-    show mike at right with easeinleft
+    a "Hello!{w=0.35} Welcome to the Beyond Suites!"
+    a "What is the name of the person you're visiting today?"
+    show ariel at right with easeinleft
     show anne at left with dissolve
     pause 0.1
-    a "Charles Robinson."
-    "The worker typed into the computer in front of him, silently mouthing my father's name."
-    m "Date of birth?"
-    a "November 25th, 1966."
+    an "Charles Robinson."
+    "The worker typed into the computer in front of her, silently mouthing my father's name."
+    a "Date of birth?"
+    an "November 25th, 1966."
     "More typing."
-    m "Date of death?"
-    a "August 3rd, 2010."
-    m "Oh, my.{w=0.5}\nYou've been waiting quite a while then, huh?"
-    a "Haha.{w=0.35} Yes, about as long as one could."
-    m "And your relation to the Visited?"
+    a "Date of death?"
+    an "August 3rd, 2010."
+    a sad frown "Oh, my.{w=0.5}\nYou've been waiting quite a while then, huh?"
+    an "Haha.{w=0.35} Yes, about as long as one could."
+    a grin "And your relation to the Visited?"
     hide anne
     show lucy at left
     with dissolve
@@ -64,37 +64,36 @@ label story1:
     ly "We're his family!"
     ls "Pretty sure Mom was going to say that, Lucy."
     ly "Well, maybe I wanted to say it!"
-    hide mike
+    hide ariel
     show anne at right
     with dissolve
     pause 0.1
-    a "Both of you, please knock it off!"
+    an "Both of you, please knock it off!"
     ly "But he--!"
-    a "I don't care who started it!{w=0.5}\nKnock it off!"
+    an "I don't care who started it!{w=0.5}\nKnock it off!"
     "Lucy crossed her arms in a pout and looked away."
     show lucy:
         ease 0.5 alpha 0.0
     show anne at left with easeinright
     hide lucy
-    show mike at right with dissolve
-    a "I'm sorry about that."
-    m "Oh, it's quite alright, Ma'am."
-    m "This is a day full of emotions, after all."
-    m "Anyway, the room number you're looking for is {=roomnumber}418211411{/}."
-    "He handed Mom a card with the number on it."
+    show ariel casual grin at right with dissolve
+    an "I'm sorry about that."
+    a sad "Oh, it's quite alright, Ma'am.{w=0.35}\nThis is a day full of emotions, after all."
+    a casual "Anyway, the room number you're looking for is {=roomnumber}418211411{/}."
+    "She handed Mom a card with the number on it."
     if first_story:
         call workerhelp
-    m "Enjoy your visit!"
-    a "Thank you, Sir."
-    a "Alright, kids. Let's go."
+    a "Enjoy your visit!"
+    an "Thank you, Miss."
+    an "Alright, kids. Let's go."
     scene bg desk with dissolve
     pause 0.1
     "We stepped out of the line and towards the elevators along the outer wall."
     call elevator_ride
     show anne at middle with dissolve
     pause 0.1
-    a "Alright, the room should be somewhere around here..."
-    a "407...{w=1}\n409...{w=1}\nAh!{w=0.5} 411!"
+    an "Alright, the room should be somewhere around here..."
+    an "407...{w=1}\n409...{w=1}\nAh!{w=0.5} 411!"
     hide anne with dissolve
     pause 0.1
     "There it was."
@@ -125,11 +124,11 @@ label story1:
     show anne at right
     with dissolve
     pause 0.1
-    a "Hello, Charles."
+    an "Hello, Charles."
     "He broke from the hug with Lucy and approached Mom."
     "I could see tears forming in both of their eyes."
-    a "Oh, Charles..."
-    a "It's so wonderful to hear your voice again."
+    an "Oh, Charles..."
+    an "It's so wonderful to hear your voice again."
     c "And it's wonderful to hear yours, Anne."
     hide charles
     hide anne
@@ -156,7 +155,7 @@ label story1:
     show anne at left
     with dissolve
     pause 0.1
-    a "I would love to."
+    an "I would love to."
     ls "..."
     window hide dissolve
     stop music fadeout 3
@@ -178,7 +177,7 @@ label story1:
     show anne at left
     with dissolve
     pause 0.1
-    a "I can certainly see why this place is called the Beyond {i}Suites{/i}!"
+    an "I can certainly see why this place is called the Beyond {i}Suites{/i}!"
     "Do the dead even need accommodations like this?"
     "I mean, it's better than a casket, but can they even, say, eat any of the fruit in the bowls here?"
     "I suppose I could try asking."
@@ -223,18 +222,18 @@ label story1:
     pause 0.1
     "I could see Mom giving me a death glare."
     "I suppose that's what she gets for dragging me along against my will to see a man I didn't want to ever see again."
-    a "A-Anyway, Charles, it's been quite an interesting life without you there."
+    an "A-Anyway, Charles, it's been quite an interesting life without you there."
     $renpy.music.set_pause(False)
     c "Interesting?{w=0.5}\nIn what way?"
     a "Well, being a single mother is never easy in any circumstance..."
     c "You never remarried?"
-    a "Why would I?{w=0.35}\nI never fell out of love with you."
+    an "Why would I?{w=0.35}\nI never fell out of love with you."
     "A big mistake on your part."
     c "Anne..."
     "He grabbed her hand with a smile."
     c "I thought for sure that what happened to me would be the best thing in your life."
-    a "No, Charles.{w=0.5}\nBeing with you was."
-    a "Yes, we had our issues, but I made vows, and darn it, I stuck with them."
+    an "No, Charles.{w=0.5}\nBeing with you was."
+    an "Yes, we had our issues, but I made vows, and darn it, I stuck with them."
     stop music fadeout 3
     "His eyes started to water again."
     c "You..."
