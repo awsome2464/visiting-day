@@ -2,7 +2,7 @@
 ## Story 1: Charles Robinson ##
 ###############################
 
-label story1:
+label charles:
     call storybegin
     window show
     ly "C'mon, Lucas! Can't you hurry it up??"
@@ -37,7 +37,6 @@ label story1:
     show lucy at middle with dissolve
     ly "Finally!"
     "An hour and fifteen minutes.{w=0.5}\nNot bad, all things considered."
-    $a_name = "Worker"
     hide lucy with dissolve
     pause 0.5
     show ariel casual grin at middle with dissolve
@@ -79,9 +78,9 @@ label story1:
     show ariel casual grin at right with dissolve
     an "I'm sorry about that."
     a sad "Oh, it's quite alright, Ma'am.{w=0.35}\nThis is a day full of emotions, after all."
-    a casual "Anyway, the room number you're looking for is {=roomnumber}418211411{/}."
+    a casual "Anyway, the room number you're looking for is {=roomnumber}0301018030180101908{/}."
     "She handed Mom a card with the number on it."
-    if first_story:
+    if firstStory:
         call workerhelp
     a "Enjoy your visit!"
     an "Thank you, Miss."
@@ -93,7 +92,7 @@ label story1:
     show anne at middle with dissolve
     pause 0.1
     an "Alright, the room should be somewhere around here..."
-    an "407...{w=1}\n409...{w=1}\nAh!{w=0.5} 411!"
+    an "904...{w=1}\n906...{w=1}\nAh!{w=0.5} 908!"
     hide anne with dissolve
     pause 0.1
     "There it was."

@@ -2,7 +2,7 @@
 ## Story 2: Michelle Sanders ##
 ###############################
 
-label story2:
+label michelle:
     call storybegin
     play music post_op
     play ambience1 crowd_talking
@@ -19,7 +19,6 @@ label story2:
     pause 0.5
     show ariel casual grin at middle with dissolve
     pause 0.1
-    $a_name = "Worker"
     a "Hello!{w=0.35} Welcome to the Beyond Suites!"
     a "What is the name of the person you're visiting today?"
     mo "Michelle Sanders."
@@ -44,9 +43,9 @@ label story2:
     a sad "Oh...!{w=1.0}\nI see..."
     "She was noticeably tense all of a sudden."
     "But she cleared her throat and resumed her more professional attitude."
-    a grin "A-Anyway, the room number you are looking for is {=roomnumber}192012254{/}."
+    a grin "A-Anyway, the room number you are looking for is {=roomnumber}19200102020504{/}."
     "She handed me a card with the number written on it."
-    if first_story:
+    if firstStory:
         call workerhelp
     a casual "I hope your visit goes well."
     mo "As do I."

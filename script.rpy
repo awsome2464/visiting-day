@@ -4,7 +4,7 @@
 
 ## Characters #################################################################################################################
 define an = Character("Anne", image="anne")
-define a = Character("[a_name]", image="ariel")
+define a = Character("[aName]", image="ariel")
 define b = Character("Boss", what_italic=True)
 define c = Character("Charles", image="charles")
 define g = Character("Gabe", image="gabe")
@@ -217,6 +217,34 @@ transform clipboard(delay):
     parallel:
         ease 0.5 ypos 0
 
+transform black_background:
+    alpha 0.0
+    ease 0.5 alpha 0.75
+    on hide:
+        ease 0.5 alpha 0.0
+
+transform confirm_clipboard:
+    zoom 2
+    offscreenleft
+    ease 0.5 xalign 0.25
+    on hide:
+        ease 0.5 offscreenleft
+
+transform confirm_button:
+    alpha 0.0
+    xalign 0.8 yalign 0.5
+    pause 0.5
+    ease 0.5 alpha 1.0
+    on hide:
+        ease 0.5 alpha 0.0
+
+transform confirm_text:
+    zoom 2
+    offscreenleft
+    ease 0.5 xalign 0.285
+    on hide:
+        ease 0.5 offscreenleft
+
 
 ## Transitions ################################################################################################################
 init -999:
@@ -233,10 +261,12 @@ init -999:
 define config.mouse = {"default": [("gui/mouse.png", 0, 0)]}
 
 # Standard
-default a_name = "Newbie"
-default first_story = True
+default aName = "Newbie"
+default currentName = ""
+default firstStory = True
 default stories = {"charles": False, "michelle": False, "gladys": False, "colin": False, "samantha": False}
-default story_labels = ["story1", "story2", "story3", "story4", "story5"]
+default storyLabels = ["story1", "story2", "story3", "story4", "story5"]
+default storyNo = 0
 default surnames = ["Robinson", "Sanders", "Swan", "Green", "Crenshaw"]
 
 
@@ -258,7 +288,7 @@ screen clipboard_names():
                         xalign 0.5 yalign 0.0
                         spacing 10
                         text "Name:" style "clipboard_idle" xalign 0.5
-                        textbutton "[fullName]" text_style "clipboard_hover" xalign 0.5 action Jump(story_labels[listPos])
+                        textbutton "[fullName]" text_style "clipboard_hover" xalign 0.5 action [Play(channel="sound", file="audio/se/paper_1.ogg"), Show("confirm_story", story=x, fullname=fullName)]
                 #$delay += 0.2
                 $listPos += 1
 
@@ -289,6 +319,34 @@ screen story_select():
     use clipboards
     use clipboard_photos
     use clipboard_names
+
+screen confirm_photos(photo):
+    add "%s photo.png" % photo at confirm_clipboard
+
+screen confirm_names(name, fullname):
+    frame at confirm_text:
+        background None
+        xysize(250, 200)
+        xalign 0.5
+        vbox:
+            xalign 0.5 ypos -30
+            spacing 10
+            text "Name:" style "clipboard_idle" xalign 0.5
+            text fullname style "clipboard_idle" xalign 0.5
+
+screen confirm_story(story, fullname):
+    modal True
+    add "bg black" at black_background
+    add "clipboard.png" at confirm_clipboard
+    use confirm_photos(story)
+    use confirm_names(story, fullname)
+    frame at confirm_button:
+        padding(20, 10)
+        vbox:
+            xalign 0.5 yalign 0.5
+            text "Visit %s?" % story.capitalize() xalign 0.5
+            textbutton "Yes" xalign 0.5 action [Play(channel="sound", file="audio/se/paper_2.ogg"), Hide("confirm_story"), Jump(story)]
+            textbutton "No" xalign 0.5 action [Play(channel="sound", file="audio/se/paper_2.ogg"), Hide("confirm_story")]
 
 # Splash ######################################################################################################################
 label splashscreen:
@@ -383,7 +441,7 @@ label start:
     $renpy.music.set_pause(False, "music")
     a casual "I'm Ariel, by the way. Pleased to meet you."
     g level "Name's Gabe. The feeling is mutual."
-    $a_name = "Ariel"
+    $aName = "Ariel"
     g "So, word on the street is that this is your first time working the big Day."
     a sad frown "Well, the word would be correct.{w=0.5}\nTo be honest, I'm quite nervous."
     g casual "Ah, there's no need to be nervous, Ariel."
@@ -473,22 +531,8 @@ label story_select:
     window show dissolve
     w "Next!"
     window hide dissolve
-
     show screen story_select
     pause
-
-    menu:
-        "Charles Robinson" if not stories["story1"]:
-            jump story1
-        "Michelle Sanders" if not stories["story2"]:
-            jump story2
-        "Gladys Swan" if not stories["story3"]:
-            pass
-        "Colin Green" if not stories["story4"]:
-            pass
-        "Samantha Crenshaw" if not stories["story5"]:
-            pass
-
     return
 
 label storybegin:
@@ -497,12 +541,13 @@ label storybegin:
     hide screen story_select
     with longdissolve
     pause 4
+    $aName = "Worker"
     return
 
 label workerhelp:
     a "Follow the signs around the lobby; they'll lead you in the direction you need to go."
     a "Or you may receive help from the workers spread along the floor."
-    $first_story = False
+    $firstStory = False
     return
 
 label elevator_ride:
