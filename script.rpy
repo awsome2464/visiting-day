@@ -21,8 +21,6 @@ define w = Character("Worker")
 image ariel_blink:
     "Characters/Ariel/Ariel Eyes 01.png"
     pause 3 + renpy.random.randint(0, 2) + renpy.random.random()
-    "Characters/Ariel/Ariel Eyes 02.png"
-    pause 0.05
     "Characters/Ariel/Ariel Eyes 03.png"
     pause 0.05
     "Characters/Ariel/Ariel Eyes 04.png"
@@ -36,8 +34,6 @@ image ariel_blink:
 image gabe_blink:
     "Characters/Gabe/Gabe Eyes 01.png"
     pause 3 + renpy.random.randint(0, 2) + renpy.random.random()
-    "Characters/Gabe/Gabe Eyes 02.png"
-    pause 0.05
     "Characters/Gabe/Gabe Eyes 03.png"
     pause 0.05
     "Characters/Gabe/Gabe Eyes 04.png"
@@ -210,6 +206,15 @@ transform left:
     xalign 0.1 yalign 0.5
 
 transform clipboard(delay):
+    zoom 0.5
+    alpha 0.0 ypos 150
+    pause delay
+    parallel:
+        ease 0.5 alpha 1.0
+    parallel:
+        ease 0.5 ypos 0
+
+transform clipboard_text(delay):
     alpha 0.0 ypos 150
     pause delay
     parallel:
@@ -224,7 +229,6 @@ transform black_background:
         ease 0.5 alpha 0.0
 
 transform confirm_clipboard:
-    zoom 2
     offscreenleft
     ease 0.5 xalign 0.25
     on hide:
@@ -284,7 +288,7 @@ screen clipboard_names():
                 frame:
                     background None
                     xysize(250, 200)
-                    vbox at clipboard(delay):
+                    vbox at clipboard_text(delay):
                         xalign 0.5 yalign 0.0
                         spacing 10
                         text "Name:" style "clipboard_idle" xalign 0.5

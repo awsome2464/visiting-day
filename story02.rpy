@@ -73,5 +73,39 @@ label michelle:
     play sound door
     pause 1
     show michelle at middle with longdissolve
-    pause 0.5
     m "Sorry about that.{w=0.35}\nPlease come in."
+    mo "Thank you."
+    hide michelle with dissolve
+    pause 1
+    scene bg room with dissolve
+    pause 0.5
+    play music post_op
+    "After entering the room, she invited me to sit at the small table nearby, an offer I humbly accepted."
+    show michelle at middle with dissolve
+    m "Sorry again about that pause after your introduction.{w=0.2}\nI just wasn't expecting a detective, that's all."
+    mo "That's quite alright, really."
+    mo "But since I {i}am{/i} here, I'm sure you can figure out why."
+    m "..."
+    "She grew a very uncomfortable look on her face, and I can't really blame her.{w}\nAfter a brief moment, she gave a small nod."
+    m "Yeah.{w=0.5}\nYou want to talk about the murder."
+    "I gave a small nod of my own."
+    mo "I know it's not something you want to relive, and I assure you that I didn't want it to come to this."
+    mo "But it's been 4 years since the incident occurred, and--"
+    m "With all due respect, you don't have to try and be delicate or whatever.{w=0.2}\nYou can say it:{w=0.1} I was murdered."
+    "I was admittedly taken aback by the straightforwardness, but I cleared my throat and nodded."
+    mo "Very well."
+    mo "As I was saying, it's been 4 years since the murder, and we have no concrete leads."
+    mo "You truly seem to be the only one that can shed any light on what exactly happened that night, Ms. Sanders."
+    m "Michelle, if you don't mind."
+    m "Sorry, I just feel weird being referred to so formally."
+    mo "Not a problem; I understand."
+    "After all, this is a visit, not an interrogation."
+    mo "Now, I know it's been 4 years since that night, and I'm sure the Other Side has been keeping you busy."
+    "At least, I'm assuming so, as no living soul knows for sure what exactly occurs on the Other Side."
+    mo "But I was hoping you could tell me what exactly transpired that night."
+    stop music fadeout 3
+    m "..."
+    "Her legs were starting to shake, and her blinking increased."
+    m "I, um..."
+    "Her breathing was noticeably deeper."
+    mo "As I said, I know this isn't something you want to discuss."
